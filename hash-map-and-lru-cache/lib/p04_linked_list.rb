@@ -71,6 +71,25 @@ class LinkedList
     node.next = @tail
     @tail.prev = node
     node.prev = last
+    node
+  end
+
+  def move_to_end(node)
+    node.prev.next = node.next
+    node.next.prev = node.prev
+
+    last = @tail.prev
+    last.next = node
+    node.next = @tail
+    @tail.prev = node
+    node.prev = last
+  end
+
+  def shift
+    frst = first
+    frst.prev.next = frst.next
+    frst.next.prev = frst.prev
+    frst
   end
 
   def update(key, val)
